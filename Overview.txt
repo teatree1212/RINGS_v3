@@ -1,0 +1,1 @@
+This repo contains the RINGS xylogenesis model code, plus makefile and climate inputs for two sites.
