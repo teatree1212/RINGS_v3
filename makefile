@@ -1,0 +1,81 @@
+F90 = gfortran
+
+FFLAGS =  -O2 -fimplicit-none -Wall -Wline-truncation -Wcharacter-truncation -Wsurprising -Waliasing  -Wimplicit-interface  -Wunused-parameter  -fwhole-file  -fcheck=all  -std=f2008  -pedantic  -fbacktrace
+
+SRC = \
+	RINGS_v2.f90 \
+	DOUBLE.f90 \
+	CONTROL.f90 \
+	PARAMS.f90 \
+	ENVIRON.f90 \
+	STATE.f90 \
+	VARIABLES.f90 \
+	DAYL.f90 \
+	INIT.f90 \
+	DIST.f90 \
+	GAUSS.f90 \
+	ZONES.f90 \
+	GROW.f90 \
+	CARB.f90 \
+	DIVIDE.f90 \
+	DIAG.f90 \
+	DIAG_CELLS.f90
+
+OBJ = $(SRC:.f90=.o)
+
+RINGS_v2.exe : $(OBJ)
+	$(F90) $(FFLAGS) -o RINGS_v2.exe $(OBJ) $(LDFLAGS)
+
+# Main routine.
+RINGS_v2.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o VARIABLES.o DAYL.o INIT.o DIST.o GAUSS.o ZONES.o GROW.o CARB.o DIVIDE.o DIAG.o DIAG_CELLS.o RINGS_v2.f90
+	$(F90) $(FFLAGS) -c RINGS_v2.f90
+
+# Subroutines.
+DAYL.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o DAYL.f90
+	$(F90) $(FFLAGS) -c DAYL.f90
+
+INIT.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o INIT.f90
+	$(F90) $(FFLAGS) -c INIT.f90
+
+DIST.o : DOUBLE.o CONTROL.o PARAMS.o STATE.o DIST.f90
+	$(F90) $(FFLAGS) -c DIST.f90
+
+GAUSS.o : DOUBLE.o GAUSS.f90
+	$(F90) $(FFLAGS) -c GAUSS.f90
+
+ZONES.o : DOUBLE.o PARAMS.o STATE.o ENVIRON.o ZONES.f90
+	$(F90) $(FFLAGS) -c ZONES.f90
+
+GROW.o : DOUBLE.o CONTROL.o PARAMS.o STATE.o VARIABLES.o GROW.f90
+	$(F90) $(FFLAGS) -c GROW.f90
+
+CARB.o : DOUBLE.o CONTROL.o PARAMS.o STATE.o VARIABLES.o CARB.f90
+	$(F90) $(FFLAGS) -c CARB.f90
+
+DIVIDE.o : DOUBLE.o CONTROL.o PARAMS.o STATE.o DIVIDE.f90
+	$(F90) $(FFLAGS) -c DIVIDE.f90
+
+DIAG.o : DOUBLE.o CONTROL.o PARAMS.o STATE.o DIAG.f90
+	$(F90) $(FFLAGS) -c DIAG.f90
+
+DIAG_CELLS.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o DIAG_CELLS.f90
+	$(F90) $(FFLAGS) -c DIAG_CELLS.f90
+
+# Modules.
+DOUBLE.o : DOUBLE.f90
+	$(F90) $(FFLAGS) -c DOUBLE.f90
+
+CONTROL.o : DOUBLE.o CONTROL.f90
+	$(F90) $(FFLAGS) -c CONTROL.f90
+
+PARAMS.o : DOUBLE.o PARAMS.f90
+	$(F90) $(FFLAGS) -c PARAMS.f90
+
+ENVIRON.o : DOUBLE.o CONTROL.o ENVIRON.f90
+	$(F90) $(FFLAGS) -c ENVIRON.f90
+
+STATE.o : DOUBLE.o CONTROL.o STATE.f90
+	$(F90) $(FFLAGS) -c STATE.f90
+
+VARIABLES.o : DOUBLE.o CONTROL.o VARIABLES.f90
+	$(F90) $(FFLAGS) -c VARIABLES.f90
