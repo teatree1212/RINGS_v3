@@ -12,7 +12,6 @@ IMPLICIT NONE
 !----------------------------------------------------------------------!
 REAL(DP) :: dlat                            ! Latitude of site (degrees)
 REAL(DP) :: iT, T_save
-!****adf
 !----------------------------------------------------------------------!
 ! Following to compute slope of relationship to calibrate Ea from
 ! Torn forcings and obs.
@@ -31,13 +30,12 @@ real(dp), dimension (ncells_max) :: Dmean, Smean, Mmean, WTHmean
 real(dp) :: Vc, Vl, Vw, WTH
 integer, dimension (ncells_max) :: nDmean
 integer :: ii, jj, n, eyr_calib, i4
-!****adf
 !----------------------------------------------------------------------!
 CHARACTER (LEN=200) :: Site ! Site                                (name)
 !----------------------------------------------------------------------!
 INTEGER :: iyr, ikt
 !----------------------------------------------------------------------!
-WRITE (*,*) "Running RINGS_v2..."
+WRITE (*,*) "Running RINGS_v3..."
 !----------------------------------------------------------------------!
 OPEN (20,FILE='zones_fig.out',STATUS='UNKNOWN')
 OPEN (21,FILE='cells_fig.out',STATUS='UNKNOWN')
@@ -190,7 +188,7 @@ CLOSE (30) ! Testing output file.
 CLOSe (31) ! Zone widths.
 CLOSE (32) ! Mean annual final radial file length (µm).
 !----------------------------------------------------------------------!
-WRITE (*,*) "RINGS_v2 finished cleanly..."
+WRITE (*,*) "RINGS_v3 finished cleanly..."
 !----------------------------------------------------------------------!
 END PROGRAM RINGS_v3
 !======================================================================!
