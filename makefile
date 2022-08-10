@@ -3,7 +3,7 @@ F90 = gfortran
 FFLAGS =  -O2 -fimplicit-none -Wall -Wline-truncation -Wcharacter-truncation -Wsurprising -Waliasing  -Wimplicit-interface  -Wunused-parameter  -fwhole-file  -fcheck=all  -std=f2008  -pedantic  -fbacktrace
 
 SRC = \
-	RINGS_v2.f90 \
+	RINGS_v3.f90 \
 	DOUBLE.f90 \
 	CONTROL.f90 \
 	PARAMS.f90 \
@@ -23,12 +23,12 @@ SRC = \
 
 OBJ = $(SRC:.f90=.o)
 
-RINGS_v2.exe : $(OBJ)
-	$(F90) $(FFLAGS) -o RINGS_v2.exe $(OBJ) $(LDFLAGS)
+RINGS_v3.exe : $(OBJ)
+	$(F90) $(FFLAGS) -o RINGS_v3.exe $(OBJ) $(LDFLAGS)
 
 # Main routine.
-RINGS_v2.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o VARIABLES.o DAYL.o INIT.o DIST.o GAUSS.o ZONES.o GROW.o CARB.o DIVIDE.o DIAG.o DIAG_CELLS.o RINGS_v2.f90
-	$(F90) $(FFLAGS) -c RINGS_v2.f90
+RINGS_v3.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o VARIABLES.o DAYL.o INIT.o DIST.o GAUSS.o ZONES.o GROW.o CARB.o DIVIDE.o DIAG.o DIAG_CELLS.o RINGS_v2.f90
+	$(F90) $(FFLAGS) -c RINGS_v3.f90
 
 # Subroutines.
 DAYL.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o DAYL.f90
