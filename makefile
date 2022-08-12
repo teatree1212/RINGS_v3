@@ -2,6 +2,8 @@ F90 = gfortran
 
 FFLAGS =  -O2 -fimplicit-none -Wall -Wline-truncation -Wcharacter-truncation -Wsurprising -Waliasing  -Wimplicit-interface  -Wunused-parameter  -fwhole-file  -fcheck=all  -std=f2008  -pedantic  -fbacktrace
 
+LDLIBS = -L/Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/lib
+
 SRC = \
 	RINGS_v3.f90 \
 	DOUBLE.f90 \
@@ -24,7 +26,7 @@ SRC = \
 OBJ = $(SRC:.f90=.o)
 
 RINGS_v3.exe : $(OBJ)
-	$(F90) $(FFLAGS) -o RINGS_v3.exe $(OBJ) $(LDFLAGS)
+	$(F90) $(FFLAGS) -o RINGS_v3.exe $(OBJ) $(LDLIBS
 
 # Main routine.
 RINGS_v3.o : DOUBLE.o CONTROL.o PARAMS.o ENVIRON.o STATE.o VARIABLES.o DAYL.o INIT.o DIST.o GAUSS.o ZONES.o GROW.o CARB.o DIVIDE.o DIAG.o DIAG_CELLS.o RINGS_v3.f90
