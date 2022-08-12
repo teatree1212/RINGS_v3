@@ -1,6 +1,5 @@
 !======================================================================!
 SUBROUTINE DIVIDE
-!https://roadmancebooks.wordpress.com/2013/12/01/i-was-told-im-going-blind-and-now-i-can-see/
 !----------------------------------------------------------------------!
 ! Divide cells in pz.
 !----------------------------------------------------------------------!
@@ -15,12 +14,12 @@ IMPLICIT NONE
 !----------------------------------------------------------------------!
 INTEGER :: nm
 !----------------------------------------------------------------------!
-REAL(DP), DIMENSION (ncells_max) :: Ln     ! Radial cell length (µm)
-REAL(DP), DIMENSION (ncells_max) :: Mn     ! Cell DM        (µg[DM])
+REAL(DP), DIMENSION (ncells_max) :: Ln     ! Radial cell length (Âµm)
+REAL(DP), DIMENSION (ncells_max) :: Mn     ! Cell DM        (Âµg[DM])
 REAL(DP), DIMENSION (ncells_max) :: rasymn ! Asymmetry on enlarg.
-REAL(DP), DIMENSION (ncells_max) :: In     ! Div. inhib. vol  (µm^3)
+REAL(DP), DIMENSION (ncells_max) :: In     ! Div. inhib. vol  (Âµm^3)
 !----------------------------------------------------------------------!
-! Critical radial length for division (µm).
+! Critical radial length for division (Âµm).
 !----------------------------------------------------------------------!
 REAL(DP) :: L_crit
 !----------------------------------------------------------------------!
@@ -55,7 +54,7 @@ DO fi = 1, nfi
   !--------------------------------------------------------------------!
   IF (D (fi,ic) <= pz) THEN
    !-------------------------------------------------------------------!
-   ! Critical radial length for division (µm).
+   ! Critical radial length for division (Âµm).
    !-------------------------------------------------------------------!
    L_crit = I (fi,ic)
    !-------------------------------------------------------------------!
@@ -85,7 +84,7 @@ DO fi = 1, nfi
     Za = MIN ( 0.49_DP, Za)
     Za = MAX (-0.49_DP, Za)
     !------------------------------------------------------------------!
-    ! Sizes of daughter cells (µm).
+    ! Sizes of daughter cells (Âµm).
     !------------------------------------------------------------------!
     L1 = L (fi,ic) * (0.5_DP - Za)
     L2 = L (fi,ic) * (0.5_DP + Za)
@@ -113,7 +112,7 @@ DO fi = 1, nfi
     !------------------------------------------------------------------!
     CALL GAUSS (Z,sigma)
     !------------------------------------------------------------------!
-    ! Radial length at division of cell L1 (µm).
+    ! Radial length at division of cell L1 (Âµm).
     !------------------------------------------------------------------!
     In (ic+nm) = fd * L1 +mu_b * (2.0_DP - fd + Z)
     In (ic+nm) = MAX (0.01_DP, In (ic+nm))
@@ -141,7 +140,7 @@ DO fi = 1, nfi
      !-----------------------------------------------------------------!
      CALL GAUSS (Z,sigma)
      !-----------------------------------------------------------------!
-     ! Radial length at division of cell L2 (µm).
+     ! Radial length at division of cell L2 (Âµm).
      !-----------------------------------------------------------------!
      In (ic+nm) =fd * L2 + mu_b * (2.0_DP - fd + Z)
      In (ic+nm) = MAX (0.01_DP, In (ic+nm))
