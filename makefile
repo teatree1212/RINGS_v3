@@ -79,3 +79,6 @@ STATE.o : DOUBLE.o CONTROL.o STATE.f90
 
 VARIABLES.o : DOUBLE.o CONTROL.o VARIABLES.f90
 	$(F90) $(FFLAGS) -c VARIABLES.f90
+	
+clean:
+	rm -f *.o *.mod
